@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.beweek"
+    namespace "care.zoop.bewell"
     defaultConfig {
-        applicationId "com.beweek"
+        applicationId "care.zoop.bewell"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

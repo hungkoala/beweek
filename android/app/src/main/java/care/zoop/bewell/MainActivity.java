@@ -1,4 +1,4 @@
-package com.beweek;
+package care.zoop.bewell;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

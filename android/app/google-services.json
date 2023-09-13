@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "195887578583",
+    "project_id": "bewell-c3d49",
+    "storage_bucket": "bewell-c3d49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195887578583:android:22170c7235c9e13f9a1f92",
+        "android_client_info": {
+          "package_name": "care.zoop.bewell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195887578583-cbuqpg7kbv8c6jmlkik5kreu1cbfa4pl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEs11V7mHXMQD0BPRhEBdZDpYH9GJkYxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195887578583-cbuqpg7kbv8c6jmlkik5kreu1cbfa4pl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "195887578583-k1i1p9f2h74tg3o4fqiutpdvsh2gq3dj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "care.zoop.bewell.staging"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195887578583:android:b4fdb4ae5f62730f9a1f92",
+        "android_client_info": {
+          "package_name": "care.zoop.bewell.staging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195887578583-cbuqpg7kbv8c6jmlkik5kreu1cbfa4pl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEs11V7mHXMQD0BPRhEBdZDpYH9GJkYxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195887578583-cbuqpg7kbv8c6jmlkik5kreu1cbfa4pl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "195887578583-k1i1p9f2h74tg3o4fqiutpdvsh2gq3dj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "care.zoop.bewell.staging"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,4 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+<color name="bootsplash_background">#4545C6</color>
+<color name="primary_dark">#000000</color><!-- No need this line in this article -->
+</resources>

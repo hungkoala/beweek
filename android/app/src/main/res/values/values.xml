@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <attr format="color|reference" name="colorinverse"/>
+    <color name="error_color">#E53832</color>
+    <color name="feedback_submit_button">#4545C6</color>
+    <color name="gradienteffect">#56000000</color>
+    <color name="red">#FF0000</color>
+    <color name="white">#FFFFFF</color>
+    <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Dialog.MinWidth">
+        <item name="android:background">#202020</item>
+        <item name="colorAccent">#4545C6</item>
+        <item name="android:backgroundTint" ns1:targetApi="lollipop">#202020</item>
+    </style>
+    <style name="DialogTheme" parent="android:Theme.Dialog">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">150dp</item>
+    </style>
+    
+    <style name="myCustomMenuTextAppearance" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">?attr/colorPrimaryDark</item>
+        <item name="android:textColor">@color/error_color</item>
+</style>
+</resources>

@@ -10,6 +10,11 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 
+// hung added
+import com.microsoft.codepush.react.CodePush; // codepush
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.livekit.reactnative.LiveKitReactNative; //livekit 
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -25,6 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+
+          packages.add(new LinearGradientPackage()); //hung added
           return packages;
         }
 
@@ -42,6 +49,12 @@ public class MainApplication extends Application implements ReactApplication {
         protected Boolean isHermesEnabled() {
           return BuildConfig.IS_HERMES_ENABLED;
         }
+
+        // code push -> hung added
+        @Override 
+        protected String getJSBundleFile() {
+            return CodePush.getJSBundleFile();
+        }
       };
 
   @Override
@@ -51,6 +64,7 @@ public class MainApplication extends Application implements ReactApplication {
 
   @Override
   public void onCreate() {
+    LiveKitReactNative.setup(); //livekit, hung added
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {

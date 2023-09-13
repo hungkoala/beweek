@@ -1,25 +1,93 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools" package="care.zoop.bewell">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+  <uses-feature android:name="android.hardware.camera" />
+  <uses-feature android:name="android.hardware.camera.autofocus" />
+  <uses-feature android:name="android.hardware.audio.output" />
+  <uses-feature android:name="android.hardware.microphone" />
 
-    <application
-      android:name=".MainApplication"
-      android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:allowBackup="false"
-      android:theme="@style/AppTheme">
-      <activity
-        android:name=".MainActivity"
-        android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-        android:launchMode="singleTask"
-        android:windowSoftInputMode="adjustResize"
-        android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-      </activity>
-    </application>
+  <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+  <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> 
+
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+  <uses-permission android:name="android.permission.INTERNET" />
+
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+
+  <!-- call keep  begin-->
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.BIND_TELECOM_CONNECTION_SERVICE"/>
+  <!-- <uses-permission android:name="android.permission.READ_CALL_LOG" /> -->
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.CALL_PHONE" />
+  <!-- call keep end -->
+
+  <!-- incomming-call-->
+  <uses-permission android:name="android.permission.VIBRATE" />
+
+
+
+  <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:allowBackup="false" android:theme="@style/AppTheme">
+
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyB79JH0h8gRaJEb7BAIn269Q-q_Ok1khbY"/>
+
+    <!-- Disable automatic screenview reporting -->
+    <!-- <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="false" /> -->
+
+    <!-- from react-native-push-notification -->
+    <!-- Change the value to true to enable pop-up for in foreground on receiving remote notifications (for prevent duplicating while showing local notifications set this to false) -->
+    <!-- <meta-data android:name="com.dieam.reactnativepushnotification.notification_foreground" android:value="false"/> -->
+    <!-- Change the resource name to your App's accent color - or any other color you want -->
+    <!-- <meta-data android:name="com.dieam.reactnativepushnotification.notification_color" android:resource="@color/white"/> -->
+
+
+    <!-- or @android:color/{name} to use a standard color -->
+    <activity android:name=".MainActivity" 
+    android:label="@string/app_name" 
+    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" 
+    android:windowSoftInputMode="adjustResize" 
+    android:screenOrientation="portrait" 
+    android:showWhenLocked="true" 
+    android:turnScreenOn="true" 
+    android:launchMode="singleInstance"
+    android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <activity android:name="care.zoop.bewell.CustomActivity" 
+    android:showWhenLocked="true" 
+    android:turnScreenOn="true" 
+    android:exported="true" />
+
+    <!-- incomming-call-->
+    <activity android:name="com.incomingcall.UnlockScreenActivity" />
+    <service android:name="io.wazo.callkeep.VoiceConnectionService" 
+    android:label="Wazo" 
+    android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE" 
+    android:exported="true">
+      <intent-filter>
+        <action android:name="android.telecom.ConnectionService" />
+      </intent-filter>
+    </service>
+    <service android:name="io.wazo.callkeep.RNCallKeepBackgroundMessagingService" 
+    android:exported="true" />
+    
+    <!-- notifee -->
+    <service android:name="app.notifee.core.ForegroundService" 
+    android:foregroundServiceType="mediaProjection|camera|microphone" />
+
+  </application>
 </manifest>

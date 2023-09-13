@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">BeWeek</string>
+    <string name="app_name">Bewell</string>
+    <string name="facebook_app_id">966519843889216</string>
+    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">DO_NOT_ASK_JAVASCRIPT</string>
+    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">nNF7Tyrh7mF_xG9cIkd2R6FWL97OMZrJTR-7S</string>
+    <string name="CodePushPublicKey">-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt+EVpV/FhocuKB0QyVBT
+dFyTQnoplYYLHgTDDrejQGDfVnUCOXN9FcsxiJXZxVJ5L0+2ESxBkCiYIfYCJMly
+cNSpSpaotG9lCtV/ZDhO9UQFqEqomAgFQYyJNvHanAAPjcrXueF+lKJ5Bt9hh+2W
+62g8HZWtlbrE2y6C/rhnSOthatalDUax6LJVJs/m92+zBGR0ITiVX+9IZD2NG2xh
+XXSd+/9/d+2KWsTqELxuATLPZTG4ScQpez2afzF8PIkjdwk8N9r1P50TW4aNtFxj
+glXfOyeqPDz2mOQD7HDVvwI6tknY/bJsJ0tW6aY+23ghWVasWPuBhSKNh6zg0ogH
+GQIDAQAB
+-----END PUBLIC KEY-----
+</string>
+
+<string name="default_notification_channel_id">Bewell_Default_Channel</string>
 </resources>

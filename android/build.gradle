@@ -13,9 +13,77 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+
+        mavenLocal()
+        jcenter { url "https://jcenter.bintray.com/"}
+        jcenter()
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
+
+        // hung added from old project
+        classpath("de.undercouch:gradle-download-task:5.0.1")
+        classpath 'com.google.gms:google-services:4.3.14'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
     }
 }
+
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter { url "https://jcenter.bintray.com/"}
+        mavenCentral()
+        google()
+        jcenter()
+
+        // maven {
+        //     // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        //     url("$rootDir/../node_modules/react-native/android")
+        // }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
+        // mavenCentral {
+        //     // We don't want to fetch react-native from Maven Central as there are
+        //     // older versions over there.
+        //     content {
+        //         excludeGroup "com.facebook.react"
+        //     }
+        // }
+        maven { url 'https://www.jitpack.io' }
+
+        maven {
+            url "$rootDir/../node_modules/@notifee/react-native/android/libs"
+        }
+
+    //     // added to force react-native
+    //     exclusiveContent {
+    //        filter {
+    //            includeGroup "com.facebook.react"
+    //        }
+    //        forRepository {
+    //            maven {
+    //                url "$rootDir/../node_modules/react-native/android"
+    //            }
+    //        }
+    //    }
+    }
+}
+
+    // hungnguyen: hack for Android Agora compoent, please remove this when updateing new React-native
+    // https://github.com/facebook/react-native/issues/35210
+    def REACT_NATIVE_VERSION = new File(['node', '--print',"JSON.parse(require('fs').readFileSync(require.resolve('react-native/package.json'), 'utf-8')).version"].execute(null, rootDir).text.trim())
+    configurations.all {
+        resolutionStrategy {
+            force 'com.facebook.react:react-native:' + REACT_NATIVE_VERSION //select Version you used
+        }
+    }
+    // hungnguyen: hack to fix issue argeting S+ (version 31 and above) requires that one of 
+    // FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent
+    // configurations.all {
+    //     resolutionStrategy { 
+    //         force 'androidx.work:work-runtime:2.7.1'
+    //     }
+    // }

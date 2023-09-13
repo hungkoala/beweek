@@ -1,6 +1,16 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 
+// added
+apply plugin: 'com.google.firebase.crashlytics'
+// added
+if(file("./google-services.json").exists()) {
+    System.out.println("Adding google-services.json support")
+    apply plugin: "com.google.gms.google-services"
+} else {
+    System.out.println("To enable push notifications, don't forget to copy paste the google-services.json file")
+}
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -74,12 +84,29 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "care.zoop.bewell"
+
+    // packagingOptions {
+    //     pickFirst '**/armeabi-v7a/libc++_shared.so'
+    //     pickFirst '**/x86/libc++_shared.so'
+    //     pickFirst '**/arm64-v8a/libc++_shared.so'
+    //     pickFirst '**/x86_64/libc++_shared.so'
+    //     pickFirst "**/libc++_shared.so"
+    //     pickFirst '**/x86/libjsc.so'
+    //     pickFirst '**/armeabi-v7a/libjsc.so'
+    //     pickFirst '**/arm64-v8a/libjsi.so'
+    // }
+
+
     defaultConfig {
         applicationId "care.zoop.bewell"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        // hungnguyen: add this line for new auth0
+        manifestPlaceholders = [auth0Domain: "bewell-development.jp.auth0.com", auth0Scheme: "${applicationId}"]
+
     }
     signingConfigs {
         debug {
@@ -87,6 +114,13 @@ android {
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
+        }
+        // hung added
+        release {
+            storeFile file("${System.env.KEYSTORE_FILE_PATH}")
+            storePassword "${System.env.KEYSTORE_PASSWORD}"
+            keyAlias "${System.env.KEYSTORE_ALIAS}"
+            keyPassword "${System.env.KEY_PASSWORD}"
         }
     }
     buildTypes {
@@ -99,6 +133,13 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            
+            // hung added
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+                strippedNativeLibsDir 'build/intermediates/stripped_native_libs/release/out/lib'
+                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/release/out/lib'
+            }
         }
     }
 }
@@ -118,6 +159,31 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    // zoontek/react-native-bootsplash
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation "androidx.core:core-splashscreen:1.0.0" // Add this line
+
+
+    implementation platform('com.google.firebase:firebase-bom:32.2.0') 
+    
+    // react native firebase crashlitycs
+    implementation 'com.google.firebase:firebase-crashlytics-ndk'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    //messaging
+    implementation "com.google.firebase:firebase-iid:21.1.0"
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.android.gms:play-services-base'
+
+    implementation "com.airbnb.android:lottie:4.0.0"
+    
+    implementation project(':react-native-linear-gradient')
+
+    implementation project(':react-native-lottie-splash-screen')
+
+    // call keep
+    implementation project(':react-native-callkeep')
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
